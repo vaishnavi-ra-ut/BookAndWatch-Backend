@@ -1,0 +1,28 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+
+const authRouter = require('./routes/authRoutes');
+const connectDB = require('./config/database');
+
+const app = express();
+app.use(cors({
+    origin: 'http://localhost:3000', // your frontend domain
+    credentials: true
+}));
+app.use(express.json());
+app.use(cookieParser()); // required to read cookies
+
+app.use('/', authRouter);
+connectDB()
+    .then(() => {
+        console.log("database connection established successfully..");
+        app.listen(7777, () => {
+            console.log("server successfully running on port 7777");
+        })
+    })
+    .catch((err) => {
+        console.error("Database cannot be connected" + err.message);
+    })
