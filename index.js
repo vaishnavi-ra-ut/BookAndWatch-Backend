@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const movieRoutes = require('./routes/movieRoutes');
+const theatersRoute = require("./routes/theaters");
 
 require('dotenv').config();
 
@@ -19,6 +20,7 @@ app.use(cookieParser()); // required to read cookies
 
 app.use('/', authRouter);
 app.use('/movies', movieRoutes);
+app.use("/theaters", theatersRoute);
 
 connectDB()
     .then(() => {
