@@ -1,6 +1,6 @@
 const express = require("express");
 const Theater = require("../models/Theater");
-const { requireAuth, requireRole } = require("../middleware/auth");
+const { requireAuth, requireRole } = require("../middlewares/auth");
 
 const router = express.Router();
 
