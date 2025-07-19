@@ -19,7 +19,7 @@
   "homepage": "https://github.com/vaishnavi-ra-ut/BookAndWatch-Backend#readme",
   "description": "",
   "dependencies": {
-    "bcrypt": "^6.0.0",
+    "axios": "^1.10.0",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
