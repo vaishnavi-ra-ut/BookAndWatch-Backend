@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const movieRoutes = require('./routes/movieRoutes');
 const theatersRoute = require("./routes/theaters");
 const adminTheaterRoutes = require("./routes/adminTheater");
+const cityApi = require("./routes/cityRoutes");
 
 require('dotenv').config();
 
@@ -19,10 +20,12 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());   
 
-app.use('/auth', authRouter);
+app.use('/auth', authRoutes);
 app.use('/movies', movieRoutes);
 app.use("/theaters", theatersRoute);
 app.use("/admin/theaters", adminTheaterRoutes);
+app.use("/api", cityApi);
+
 
 connectDB()
     .then(() => {
