@@ -1,6 +1,7 @@
 const validator = require("validator");
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
