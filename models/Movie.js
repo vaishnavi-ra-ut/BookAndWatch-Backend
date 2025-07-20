@@ -7,6 +7,8 @@ const movieSchema = new mongoose.Schema({
   overview: String,
   poster_path: String,
   release_date: String,
+  runtime: Number,
+  language: String,
   genres: [String], // or TMDB genre IDs
   createdAt: { type: Date, default: Date.now },
 });

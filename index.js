@@ -8,7 +8,7 @@ const adminTheaterRoutes = require("./routes/adminTheater");
 
 require('dotenv').config();
 
-const authRouter = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 const connectDB = require('./config/database');
 
 const app = express();
