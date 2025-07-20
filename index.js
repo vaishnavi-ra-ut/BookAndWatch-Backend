@@ -19,7 +19,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());   
 
-app.use('/auth', authRouter);
+app.use('/auth', authRoutes);
 app.use('/movies', movieRoutes);
 app.use("/theaters", theatersRoute);
 app.use("/admin/theaters", adminTheaterRoutes);
