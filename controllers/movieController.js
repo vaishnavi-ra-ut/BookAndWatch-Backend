@@ -18,6 +18,16 @@ const axiosConfig = {
     region: "IN",
   },
 };
+const getMovieTrailer = async (req, res) => {
+  const { movieId } = req.params;
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}/videos`, axiosConfig);
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching trailer:", error.message);
+    res.status(500).json({ error: "Failed to fetch trailer" });
+  }
+};
 
 const getPopularMovies = async (req, res) => {
   try {
@@ -53,4 +63,5 @@ module.exports = {
   getPopularMovies,
   getUpcomingMovies,
   getNowPlayingMovies,
+  getMovieTrailer
 };
