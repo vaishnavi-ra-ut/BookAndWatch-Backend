@@ -4,22 +4,22 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const movieRoutes = require('./routes/movieRoutes');
 const theatersRoute = require("./routes/theaters");
-const adminTheaterRoutes = require("./routes/adminTheaterRoutes");
+const adminTheaterRoutes = require("./routes/adminTheater");
 
 require('dotenv').config();
 
-const authRouter = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 const connectDB = require('./config/database');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: 'http://localhost:3000',
     credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser()); // required to read cookies   
 
-app.use('/', authRouter);
+app.use('/', authRoutes);
 app.use('/movies', movieRoutes);
 app.use("/theaters", theatersRoute);
 app.use("/admin/theaters", adminTheaterRoutes);
