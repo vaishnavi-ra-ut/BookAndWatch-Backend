@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
+  "test": "jest",
+  "start": "node index.js",
+  "dev": "nodemon index.js",
+  "build": "react-scripts build"
+},
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vaishnavi-ra-ut/BookAndWatch-Backend.git"
