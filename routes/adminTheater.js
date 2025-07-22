@@ -1,35 +1,16 @@
 const express = require("express");
-const Theater = require("../models/Theater");
 const { requireAuth, requireRole } = require("../middlewares/auth");
-
+const { postTheater, deleteTheater, updateTheaterDetails } = require("../controllers/theaterController");
 const router = express.Router();
 
-router.post(
-  "/",
+router.post("/",
   requireAuth,
-  requireRole("admin"),
-  async (req, res) => {
-    try {
-      const { name, area, city, screens } = req.body;
-
-      if (!name || !area || !city || !screens) {
-        return res.status(400).json({
-          error: "All fields (name, area, city, screens) are required.",
-        });
-      }
-
-      const newTheater = new Theater({ name, area, city, screens });
-      await newTheater.save();
-
-      res.status(201).json({
-        message: "Theater added successfully",
-        theater: newTheater,
-      });
-    } catch (err) {
-      console.error("Error adding theater:", err);
-      res.status(500).json({ error: "Server Error" });
-    }
-  }
-);
+  requireRole("admin"), postTheater);
+router.delete("/:id",
+  requireAuth,
+  requireRole("admin"), deleteTheater);
+router.patch("/:id",
+  requireAuth,
+  requireRole("admin"), updateTheaterDetails);
 
 module.exports = router;

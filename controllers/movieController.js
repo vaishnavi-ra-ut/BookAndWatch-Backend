@@ -18,6 +18,7 @@ const axiosConfig = {
     region: "IN",
   },
 };
+
 const getMovieTrailer = async (req, res) => {
   const { movieId } = req.params;
   try {
@@ -59,9 +60,31 @@ const getNowPlayingMovies = async (req, res) => {
   }
 };
 
+const getMovieDetails = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [movie, credits, videos, similar] = await Promise.all([
+      axios.get(`${BASE_URL}/movie/${id}`, axiosConfig),
+      axios.get(`${BASE_URL}/movie/${id}/credits`, axiosConfig),
+      axios.get(`${BASE_URL}/movie/${id}/videos`, axiosConfig),
+    ]);
+
+    res.json({
+      movie: movie.data,
+      cast: credits.data.cast,
+      videos: videos.data.results,
+    });
+  } catch (error) {
+    console.error("Error fetching movie details:", error.message);
+    res.status(500).json({ error: "Failed to fetch movie details" });
+  }
+};
+
 module.exports = {
   getPopularMovies,
   getUpcomingMovies,
   getNowPlayingMovies,
-  getMovieTrailer
+  getMovieTrailer,
+  getMovieDetails
 };
