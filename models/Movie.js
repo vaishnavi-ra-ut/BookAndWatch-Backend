@@ -1,16 +1,36 @@
-// models/Movie.js
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const movieSchema = new mongoose.Schema({
-  tmdbId: { type: Number, unique: true },
-  title: String,
-  overview: String,
-  poster_path: String,
-  release_date: String,
-  runtime: Number,
-  language: String,
-  genres: [String], // or TMDB genre IDs
-  createdAt: { type: Date, default: Date.now },
+const genreSchema = new mongoose.Schema({
+  id: Number,
+  name: String,
 });
 
-export default mongoose.model("Movie", movieSchema);
+const movieSchema = new mongoose.Schema({
+  tmdbId: { type: Number, required: true, unique: true },
+  title: String,
+  poster_path: String,
+  backdrop_path: String,
+  overview: String,
+  release_date: String,
+  runtime: Number,
+  vote_average: Number,
+  genres: [genreSchema],
+  videos: [
+    {
+      key: String,
+      site: String,
+      type: String,
+      name: String,
+    },
+  ],
+  cast: [
+    {
+      id: Number,
+      name: String,
+      character: String,
+      profile_path: String,
+    },
+  ],
+});
+
+module.exports = mongoose.model("Movie", movieSchema);
