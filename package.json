@@ -6,7 +6,7 @@
     "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build" : "npm run build"
+    "build" : "echo 'No build step needed for backend'"
   },
   "repository": {
     "type": "git",
