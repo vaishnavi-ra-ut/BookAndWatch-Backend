@@ -14,7 +14,7 @@ const connectDB = require('./config/database');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:5174', 
+    origin: 'https://book-and-watch-frontend-git-main-dipika1226s-projects.vercel.app', 
     credentials: true
 }));
 app.use(express.json());
